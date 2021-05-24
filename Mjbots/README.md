@@ -22,7 +22,7 @@ https://mjbots.com/products/mjbots-power-dist-r4-3b
 
 Was really impatient to receive my "pack"
 Big Big thanks to Josh PIEPER for it patience, and help, to finalize a difficult order lol.
-![Alt text](../images/robot/box1.jpg?raw=true)
-![Alt text](../images/robot/box2.jpg?raw=true)
-![Alt text](../images/robot/box3.jpg?raw=true)
-![Alt text](../images/robot/box4.jpg?raw=true)
+![Alt text](../images/mjbots/box1.jpg?raw=true)
+![Alt text](../images/mjbots/box2.jpg?raw=true)
+![Alt text](../images/mjbots/box3.jpg?raw=true)
+![Alt text](../images/mjbots/box4.jpg?raw=true)
