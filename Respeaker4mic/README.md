@@ -5,4 +5,4 @@ The 12 RGB leds are programmables.
 I'll use them to simulate brain activity, orders feedback, and humor.
 
 ![Alt text](../images/respeaker/overview.png?raw=true)
-![Alt text](../images/respeaker/Pin_map.png?raw=true)
+![Alt text](../images/respeaker/Pin_Map.png?raw=true)
