@@ -1,6 +1,6 @@
 # ylo-2
 
-New quadruped robot, working on UP Xtreme board, and BLDC motors from Mjbots
+#### New quadruped robot, working on UP Xtreme board, and BLDC motors from Mjbots
 
 ![Alt text](images/robot/dock2.jpg?raw=true "Ylo-2 on it dockstation")
 ![Alt text](images/robot/dock1.jpg?raw=true)
@@ -24,7 +24,7 @@ This robot is created from scratch.
 ![Alt text](images/robot/cnc1.jpg?raw=true)
 ![Alt text](images/robot/cnc3.jpg?raw=true)
 
-Lower leg has a 3/1 ratio (and motor provides a 6/1 ratio)
+#### Lower leg has a 3/1 ratio (and motor provides a 6/1 ratio)
 ![Alt text](images/robot/timing_belt_idea.png?raw=true)
 
 #### foot are silicon made in a 3d printed mold, inserted in force, as a sock...easy to change
