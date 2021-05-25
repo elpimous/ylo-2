@@ -26,3 +26,16 @@ Big Big thanks to Josh PIEPER for it patience, and help, to finalize a difficult
 ![Alt text](../images/mjbots/box2.jpg?raw=true)
 ![Alt text](../images/mjbots/box3.jpg?raw=true)
 ![Alt text](../images/mjbots/box4.jpg?raw=true)
+
+# Some informations :
+
+* SocketCan timings:
+
+        ip link set can0 up type can \
+        tq 12 prop-seg 25 phase-seg1 25 phase-seg2 29 sjw 10 \
+        dtq 12 dprop-seg 6 dphase-seg1 2 dphase-seg2 7 dsjw 12 \
+        restart-ms 1000 fd on
+
+* bash test :
+
+        for ID in $(seq 1 12); do echo "d pos nan 0 5" | moteus_tool -t $ID -c; done
