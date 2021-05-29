@@ -79,8 +79,16 @@ export some more properties of the device
 
 lspcan overview of the PC CAN interfaces. The "-i" option displays static properties of devices nodes. with –T –t –s –f refreshes the screen every second with a detailed view
 
-    ./lspcan -T -t -i
+    lspcan -T -t -i
 
+    ylo2@ylo2-UP-WHL01:~/src/peak/peak-linux-driver-8.12.0$ lspcan -T -t -i
+    dev name	port	irq	clock	btrs	bus
+    [PCAN-M.2 0]
+    |_ pcanpcifd0	CAN1	16	80MHz	500k+2M	CLOSED
+    |_ pcanpcifd1	CAN2	16	80MHz	500k+2M	CLOSED
+    |_ pcanpcifd2	CAN3	16	80MHz	500k+2M	CLOSED
+    |_ pcanpcifd3	CAN4	16	80MHz	500k+2M	CLOSED
+    
 ---
 
 # Some tests
