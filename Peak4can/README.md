@@ -202,6 +202,8 @@ moteus_tool and tview configuration over python-can
 
 - ## Install Pcan basic api
 
+https://www.peak-system.com/quick/BasicLinux
+
 reference: https://python-can.readthedocs.io/en/master/interfaces/pcan.html
 
 - Create an ~/can.conf
