@@ -22,6 +22,14 @@ Big Big thanks to Josh PIEPER for it patience, and help, to finalize a difficult
 
 # Some informations :
 
+* Install moteus_gui
+
+        sudo apt-get install python3.8 python3.8-dev
+        sudo apt install python3-pip
+        sudo apt install python3-pyside2* python3-serial python3-can python3-matplotlib python3-qtconsole
+        sudo pip3 install asyncqt importlib_metadata pyelftools cython
+        python3.8 -m pip install moteus_gui
+        
 * SocketCan timings:
 
         sudo ip link set can0 up type can tq 12 prop-seg 25 phase-seg1 25 phase-seg2 29 sjw 10 dtq 12 dprop-seg 6 dphase-seg1 2 dphase-seg2 7 dsjw 12 restart-ms 1000 fd on
