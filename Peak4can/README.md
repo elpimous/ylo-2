@@ -200,7 +200,7 @@ Confirm and assign ID:s to each channel. Then we can use #define DEVICE "/dev/pc
 
 moteus_tool and tview configuration over python-can
 
-- Install Pcan basic api
+- ## Install Pcan basic api
 
 reference: https://python-can.readthedocs.io/en/master/interfaces/pcan.html
 
