@@ -199,9 +199,12 @@ Apply a device id to a channel (in this example id:10)
 Confirm and assign ID:s to each channel. Then we can use #define DEVICE "/dev/pcan-pcie_fd/devid=X to call the joint
 
 moteus_tool and tview configuration over python-can
+
+- Install Pcan basic api
+
 reference: https://python-can.readthedocs.io/en/master/interfaces/pcan.html
 
-Create an ~/can.conf
+- Create an ~/can.conf
 
 Add the following to the can.conf
 
@@ -218,8 +221,6 @@ Add the following to the can.conf
     data_tseg2 = 7
     data_sjw = 12
 
-Open terminal and type execute. Where [devices=x] is the motor ID and [PCAN_PCIBUS2] is your can bus. So please note that the ID most exist on the correct BUS. (https://github.com/mjbots/moteus/blob/main/docs/reference.md)
+open a terminal :
 
-    python3.7 -m moteus_gui.tview --devices=x --can-iface pcan --can-chan PCAN_PCIBUSX
-
-where --can-iface specifies the "interface" for python-can and --can-chan specifies the "channel".
+    python3.8 -m moteus_gui.tview --devices=5 --can-iface pcan --can-chan PCAN_PCIBUS1
