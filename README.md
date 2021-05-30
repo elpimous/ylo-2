@@ -40,18 +40,33 @@ This robot is created from scratch.
 # HowTo :
 
 [x] Finish robot
+
 [x] RT kernel on 18.04
+
 [x] Peak 4 can working
+
 [ ] Realsense D435
+
 [ ] Realsense T265
+
 [ ] Myahrs+ IMU
+
 [ ] Ros melodic
+
 [ ] I2C working on UP Xtreme I7
+
 [ ] Distance sensors SRF10
+
 [ ] URDF
+
 [ ] Mini cheetah package
+
 [ ] Working simulation
+
 [ ] MiniCheetah Moteus controller
+
 [ ] Improving gait
+
 [ ] DockStation RTH software
+
 [ ] VSLAM, GMAPPING and AMCL
