@@ -34,3 +34,24 @@ This robot is created from scratch.
 #### 3D calibration tool, for all 4 legs
 ![Alt text](images/robot/calib_tool1.jpg?raw=true)
 ![Alt text](images/robot/calib_tool2.jpg?raw=true)
+
+----
+
+# HowTo :
+
+[x] Finish robot
+[x] RT kernel on 18.04
+[x] Peak 4 can working
+[ ] Realsense D435
+[ ] Realsense T265
+[ ] Myahrs+ IMU
+[ ] Ros melodic
+[ ] I2C working on UP Xtreme I7
+[ ] Distance sensors SRF10
+[ ] URDF
+[ ] Mini cheetah package
+[ ] Working simulation
+[ ] MiniCheetah Moteus controller
+[ ] Improving gait
+[ ] DockStation RTH software
+[ ] VSLAM, GMAPPING and AMCL
