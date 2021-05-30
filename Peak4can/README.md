@@ -212,6 +212,7 @@ Add the following to the can.conf
 
     [default]
     interface = pcan
+    channel = PCAN_PCIBUS1
     fd = True
     f_clock_mhz = 80
     nom_brp = 1
