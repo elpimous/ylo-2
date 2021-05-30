@@ -37,7 +37,7 @@ This robot is created from scratch.
 
 ----
 
-# HowTo :
+# WORKING PROCESS :
 
 - [x] Finish robot
 
