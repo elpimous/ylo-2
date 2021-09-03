@@ -204,18 +204,20 @@ moteus_tool and tview configuration over python-can
 
 Download : https://www.peak-system.com/quick/BasicLinux
 
-To build PCAN-Basic library:
-> cd libpcanbasic/pcanbasic
-> make clean
-> make 
+    To build PCAN-Basic library:
+    > cd libpcanbasic/pcanbasic
+    > make clean
+    > make 
 
-To install PCAN-Basic library (inside pcanbasic directory):
-> sudo make install
-(or as root "make install")
 
-To uninstall PCAN-Basic library (inside pcanbasic directory):
-> sudo make uninstall
-(or as root "make uninstall")
+    To install PCAN-Basic library (inside pcanbasic directory):
+    > sudo make install
+    (or as root "make install")
+
+
+    To uninstall PCAN-Basic library (inside pcanbasic directory):
+    > sudo make uninstall
+    (or as root "make uninstall")
 
 
 reference: https://python-can.readthedocs.io/en/master/interfaces/pcan.html
