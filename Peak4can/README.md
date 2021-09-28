@@ -248,8 +248,8 @@ open a terminal :
 
 remove peak driver, reboot
 
-open needed port, ex :
-ip link set can0 up type can tq 12 prop-seg 25 phase-seg1 25 phase-seg2 29 sjw 10 dtq 12 dprop-seg 6 dphase-seg1 2 dphase-seg2 7 dsjw 12 restart-ms 1000 fd on
+open needed port :
+    ip link set can0 up type can tq 12 prop-seg 25 phase-seg1 25 phase-seg2 29 sjw 10 dtq 12 dprop-seg 6 dphase-seg1 2 dphase-seg2 7 dsjw 12 restart-ms 1000 fd on
 
 
 close port :
