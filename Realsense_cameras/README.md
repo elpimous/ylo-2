@@ -9,3 +9,6 @@ https://www.intelrealsense.com/depth-camera-d435/
 https://www.intelrealsense.com/tracking-camera-t265/
 
 ![Alt text](../images/cameras/T265.png?raw=true)
+
+# Install realsense2
+https://www.programmersought.com/article/53583561463/

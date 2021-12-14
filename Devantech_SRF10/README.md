@@ -3,6 +3,7 @@
 # Ultrasonic distance sensor
 
 github : https://github.com/eliotlim/sensor_hub
+https://www.robot-electronics.co.uk/htm/srf10tech.htm
 
 forum  : https://robosavvy.com/forum/viewtopic.php?t=3695
 
