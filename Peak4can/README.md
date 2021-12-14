@@ -79,8 +79,16 @@ export some more properties of the device
 
 lspcan overview of the PC CAN interfaces. The "-i" option displays static properties of devices nodes. with –T –t –s –f refreshes the screen every second with a detailed view
 
-    ./lspcan -T -t -i
+    lspcan -T -t -i
 
+    ylo2@ylo2-UP-WHL01:~/src/peak/peak-linux-driver-8.12.0$ lspcan -T -t -i
+    dev name	port	irq	clock	btrs	bus
+    [PCAN-M.2 0]
+    |_ pcanpcifd0	CAN1	16	80MHz	500k+2M	CLOSED
+    |_ pcanpcifd1	CAN2	16	80MHz	500k+2M	CLOSED
+    |_ pcanpcifd2	CAN3	16	80MHz	500k+2M	CLOSED
+    |_ pcanpcifd3	CAN4	16	80MHz	500k+2M	CLOSED
+    
 ---
 
 # Some tests
@@ -191,9 +199,30 @@ Apply a device id to a channel (in this example id:10)
 Confirm and assign ID:s to each channel. Then we can use #define DEVICE "/dev/pcan-pcie_fd/devid=X to call the joint
 
 moteus_tool and tview configuration over python-can
+
+- ## Install Pcan basic api
+
+Download : https://www.peak-system.com/quick/BasicLinux
+
+    To build PCAN-Basic library:
+    > cd libpcanbasic/pcanbasic
+    > make clean
+    > make 
+
+
+    To install PCAN-Basic library (inside pcanbasic directory):
+    > sudo make install
+    (or as root "make install")
+
+
+    To uninstall PCAN-Basic library (inside pcanbasic directory):
+    > sudo make uninstall
+    (or as root "make uninstall")
+
+
 reference: https://python-can.readthedocs.io/en/master/interfaces/pcan.html
 
-Create an ~/can.conf
+- Create an ~/can.conf
 
 Add the following to the can.conf
 
@@ -210,8 +239,25 @@ Add the following to the can.conf
     data_tseg2 = 7
     data_sjw = 12
 
-Open terminal and type execute. Where [devices=x] is the motor ID and [PCAN_PCIBUS2] is your can bus. So please note that the ID most exist on the correct BUS. (https://github.com/mjbots/moteus/blob/main/docs/reference.md)
+open a terminal :
 
-    python3.7 -m moteus_gui.tview --devices=x --can-iface pcan --can-chan PCAN_PCIBUSX
+    python3.8 -m moteus_gui.tview --devices=5 --can-iface pcan --can-chan PCAN_PCIBUS1
 
-where --can-iface specifies the "interface" for python-can and --can-chan specifies the "channel".
+---
+# Working with SOCKET CAN :
+
+remove peak driver, reboot
+
+open needed port :
+
+
+    ip link set can0 up type can tq 12 prop-seg 25 phase-seg1 25 phase-seg2 29 sjw 10 dtq 12 dprop-seg 6 dphase-seg1 2 dphase-seg2 7 dsjw 12 restart-ms 1000 fd on
+
+
+close port :
+
+
+    sudo ip link set can0 down
+
+
+run MOTEUS_GUI :
