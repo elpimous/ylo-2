@@ -49,11 +49,11 @@ This robot is created from scratch.
 
 - [ ] Realsense T265
 
-- [ ] Myahrs+ IMU
+- [x] Myahrs+ IMU
 
-- [ ] Ros melodic
+- [x] Ros noetic
 
-- [ ] I2C working on UP Xtreme I7
+- [x] I2C working on UP Xtreme I7
 
 - [ ] Distance sensors SRF10
 
