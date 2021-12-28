@@ -61,7 +61,7 @@ This robot is created from scratch.
 
 - [ ] Mini cheetah package
 
-- [x] Working simulation
+- [x] Working Mini Cheetah 3 simulation
 
 - [ ] MiniCheetah Moteus controller
 
