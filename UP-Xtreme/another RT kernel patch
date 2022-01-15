@@ -1,5 +1,11 @@
 How to setup PREEMPT RT on Ubuntu 18 - 20
 
+After the reboot you need to add our repository:
+
+	sudo add-apt-repository ppa:aaeon-cm/5.4-upboard
+
+Update the repository list
+
 Install Dependencies
 
         ``` sudo apt install build-essential git libssl-dev libelf-dev ``` 
