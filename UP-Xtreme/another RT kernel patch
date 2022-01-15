@@ -2,12 +2,14 @@ How to setup PREEMPT RT on Ubuntu 18 - 20
 
 Install Dependencies
 
-#sudo apt install build-essential git libssl-dev libelf-dev
+    sudo apt install build-essential git libssl-dev libelf-dev
+    
 Download and patch
 Download the linux-5.4.17 kernel from kernel.org and the rt patch
 
-#wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.19.tar.xz
-#wget https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/5.4/patch-5.4.19-rt11.patch.xz
+    wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.19.tar.xz
+    wget https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/5.4/patch-5.4.19-rt11.patch.xz
+
 Extract the archive and apply the patch
 
 xz -cd linux-5.4.19.tar.xz | tar xvf -
