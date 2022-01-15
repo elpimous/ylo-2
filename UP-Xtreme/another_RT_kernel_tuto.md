@@ -2,7 +2,7 @@
 
 Install Dependencies:
 
-        ``` sudo apt install build-essential git libssl-dev libelf-dev ``` 
+        sudo apt install build-essential git libssl-dev libelf-dev
     
 Download and patch
 Download the linux-5.4.17 kernel from kernel.org and the rt patch
