@@ -53,13 +53,12 @@ Add your user to realtime group
 add the following to /etc/security/limits.d/99-realtime.conf
 
 ```$ sudo nano /etc/security/limits.d/99-realtime.conf```
-
-```@realtime soft rtprio 99```
-```@realtime soft priority 99```
-```@realtime soft memlock 102400```
-```@realtime hard rtprio 99```
-```@realtime hard priority 99```
-```@realtime hard memlock 102400```
+@realtime soft rtprio 99
+@realtime soft priority 99
+@realtime soft memlock 102400
+@realtime hard rtprio 99
+@realtime hard priority 99
+@realtime hard memlock 102400
 
 ## CPU Scaling
 
