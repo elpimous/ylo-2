@@ -7,13 +7,13 @@ Install Dependencies:
 Download and patch
 Download the linux-5.4.17 kernel from kernel.org and the rt patch
 
-``` wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.19.tar.xz
-    wget https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/5.4/patch-5.4.19-rt11.patch.xz``` 
+``` wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.19.tar.xz ```
+```wget https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/5.4/patch-5.4.19-rt11.patch.xz``` 
 
 Extract the archive and apply the patch
 
-``` xz -cd linux-5.4.19.tar.xz | tar xvf - cd linux-5.4.19
-xzcat ../patch-5.4.19-rt11.patch.xz | patch -p1``` 
+``` xz -cd linux-5.4.19.tar.xz | tar xvf - cd linux-5.4.19```
+``` xzcat ../patch-5.4.19-rt11.patch.xz | patch -p1``` 
 
 Configuration
 copy over your old config and use that to configure your new kernel
@@ -26,54 +26,50 @@ when asked for Preemption Model, select the option “Fully Preemptible Kernel�
 Alternatively, you could use the graphical interface to configure it using menuconfig.
 
 menuconfig requires flex and bison dependencies
+```sudo apt install flex bison```
 
-``sudo apt install flex bison``
 open config editor using
+```make menuconfig```
 
-make menuconfig
-search for PREEMPT_RT and set it to “Fully Preemptible Kernel (RT)”.
-
-Build and Install
 Build the kernel as a debian package using make command
-
-``$ make -j8 deb-pkg``
-
-``$ sudo dpkg -i ../linux-headers-5.4.19-rt11_5.4.19-rt11-1_amd64.deb ../linux-image-5.4.19-rt11_5.4.19-rt11-1_amd64.deb ../linux-libc-dev_5.4.19-rt11-1_amd64.deb``
+```$ make -j8 deb-pkg```
+```$ sudo dpkg -i ../linux-headers-5.4.19xxx_amd64.deb ../linux-image-5.4.19xxx_amd64.deb ../linux-libc-dev_5.4.19xxx_amd64.deb```
 
 Verification
 Reboot your system and check the kernel. It should show PREEMPT_RT
 
-ylo2@ylo2:~/linux-5.4.19/ > ``uname -a``
+ylo2@ylo2:~/linux-5.4.19/ > ```uname -a```
 Linux ylo2-5 5.4.19-rt11 #1 SMP PREEMPT_RT xxxxxxxxxx x86_64 x86_64 x86_64 GNU/Linux
 
-Additional Configuration
+
+## Additional Configuration
 Security settings
 Add your user to realtime group
 
-$ sudo groupadd realtime
-...
+```$ sudo groupadd realtime```
 
-$ sudo usermod -aG realtime $USER
+```$ sudo usermod -aG realtime $USER```
 ...
 add the following to /etc/security/limits.d/99-realtime.conf
 
-$ sudo nano /etc/security/limits.d/99-realtime.conf
+```$ sudo nano /etc/security/limits.d/99-realtime.conf```
 
-@realtime soft rtprio 99
+```@realtime soft rtprio 99
 @realtime soft priority 99
 @realtime soft memlock 102400
 @realtime hard rtprio 99
 @realtime hard priority 99
-@realtime hard memlock 102400
-CPU Scaling
+@realtime hard memlock 102400```
+
+## CPU Scaling
+
 disable cpu scaling by setting the cpu governer to performance using cpufrequtils.
+```$ sudo apt install cpufrequtils```
 
-$ sudo apt install cpufrequtils
-...
 Check the available cpufreq governers using cpufreq-info, in my case they were performance and powersave
+```ylo2@ylo2:~/ > cpufreq-info```
 
-kautilya@johnny-5:~/ > cpufreq-info
-cpufrequtils 008: cpufreq-info (C) Dominik Brodowski 2004-2009
+```cpufrequtils 008: cpufreq-info (C) Dominik Brodowski 2004-2009
 Report errors and bugs to cpufreq@vger.kernel.org, please.
 analyzing CPU 0:
     driver: intel_pstate
@@ -85,16 +81,10 @@ analyzing CPU 0:
     current policy: frequency should be within 800 MHz and 4.60 GHz.
                     The governor "performance" may decide which speed to use
                     within this range.
-    current CPU frequency is 4.40 GHz.
+    current CPU frequency is 4.40 GHz.```
+    
 set the cpu frequency to performance using the following
-
-$ sudo systemctl disable ondemand
-...
-
-$ sudo systemctl enable cpufrequtils
-...
-
-$ sudo sh -c 'echo "GOVERNOR=performance" > /etc/default/cpufrequtils'
-...
-
-$ sudo systemctl daemon-reload && sudo systemctl restart cpufrequtils
+```$ sudo systemctl disable ondemand```
+```$ sudo systemctl enable cpufrequtils```
+```$ sudo sh -c 'echo "GOVERNOR=performance" > /etc/default/cpufrequtils'```
+```$ sudo systemctl daemon-reload && sudo systemctl restart cpufrequtils```
