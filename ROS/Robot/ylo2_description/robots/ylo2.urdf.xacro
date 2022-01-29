@@ -29,7 +29,7 @@
     <xacro:include filename="$(find ylo2_urdf_2022_description)/urdfs/leg.xacro"/>
 
     <!-- Rollover Protection mode will add an additional stick on the top, use "true" or "false" to switch it. -->
-    <xacro:property name="rolloverProtection" value="true"/>
+    <xacro:property name="rolloverProtection" value="false"/>
 
     <!-- Debug mode will hung up the robot, use "true" or "false" to switch it. -->
     <!-- <xacro:if value="$(arg DEBUG)">
@@ -215,7 +215,7 @@
         </collision>
     </link>
 
-    <!-- position of HIPS (and full legs too)-->
+    <!-- ABAD POSITION OK pas touche-->
     <xacro:leg name="rf" mirror="-1" mirror_dae= "False" front_hind="1" front_hind_dae="True">
         <origin rpy="0 0 0" xyz="${leg_offset_x-0.019} ${0-leg_offset_y+0.006} ${0-leg_offset_z}"/>
     </xacro:leg>

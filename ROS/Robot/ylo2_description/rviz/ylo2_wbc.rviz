@@ -179,7 +179,7 @@ Visualization Manager:
       Visual Enabled: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /ylo2/plot_node/contact_forces_visual_marker
+      Marker Topic: /aliengo/plot_node/contact_forces_visual_marker
       Name: MarkerArray
       Namespaces:
         Arrow: true
@@ -196,7 +196,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /ylo2/CoM/com_visual_marker
+      Marker Topic: /aliengo/CoM/com_visual_marker
       Name: MarkerArray
       Namespaces:
         {}
@@ -204,7 +204,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /ylo2/foot_holds/footholds_visual_marker
+      Marker Topic: /aliengo/foot_holds/footholds_visual_marker
       Name: MarkerArray
       Namespaces:
         {}
@@ -212,7 +212,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /ylo2/plot_node/terrain_estimation_visual_marker
+      Marker Topic: /aliengo/plot_node/terrain_estimation_visual_marker
       Name: MarkerArray
       Namespaces:
         Arrow: true
@@ -221,7 +221,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /ylo2/plot_node/CoM_visual_marker
+      Marker Topic: /aliengo/plot_node/CoM_visual_marker
       Name: MarkerArray
       Namespaces:
         Arrow: true
@@ -230,7 +230,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /ylo2/plot_node/friction_cones_visual_marker
+      Marker Topic: /aliengo/plot_node/friction_cones_visual_marker
       Name: MarkerArray
       Namespaces:
         Arrow: true

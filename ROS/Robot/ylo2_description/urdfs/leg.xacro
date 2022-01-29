@@ -18,7 +18,7 @@
             </xacro:if>            
         </joint>
 
-        <link name="${name}_hip">
+        <link name="${name}_hip"> <!-- AB AD -->
             <visual>
                 <xacro:if value="${(mirror_dae == True) and (front_hind_dae == True)}">
                     <origin rpy="0 0 0" xyz="-0.06 0 0"/>
@@ -65,7 +65,7 @@
 
         <link name="${name}_upperleg">
             <visual>
-                <origin rpy="0 0 0" xyz="0 ${-0.0732*mirror} 0"/> <!-- 4 upper_legs position (same time -> "mirror param") -->
+                <origin rpy="0 0 0" xyz="0 ${-0.0732*mirror} 0"/> <!-- positionnement des 4 axes en meme temps -->
                 <geometry>
                     <xacro:if value="${mirror_dae == True}">
                         <mesh filename="package://ylo2_urdf_2022_description/meshes/leg/fl_upper_leg.stl" scale="1 1 1"/>
@@ -77,7 +77,7 @@
                 <material name="grey"/>
             </visual>
             <collision>
-                <origin rpy="0 0 0" xyz="0 ${-0.0732*mirror} 0"/>
+                <origin rpy="0 0 0" xyz="0 ${-0.0732*mirror} 0"/> <!-- positionnement des 4 axes en meme temps -->
                 <geometry>
                     <xacro:if value="${mirror_dae == True}">
                         <mesh filename="package://ylo2_urdf_2022_description/meshes/leg/fl_upper_leg_collision.stl" scale="1 1 1"/>
