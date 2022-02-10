@@ -18,7 +18,7 @@ import moteus
 import os
 import subprocess
 
-pwd = 'change for your password !!!'
+pwd = 'change with your sudo password !!!'
 
 async def main():
 
@@ -44,12 +44,13 @@ async def main():
             # request a soft ubuntu shutdown
             break
 
-        await asyncio.sleep(0.5)
+        # loop every 5s
+        await asyncio.sleep(5.0)
 
     print("shutdown needed")
     os.system('echo '+pwd+' | sudo -S poweroff')
     print("command sent")
-    # the program exits, Lock time decreases (by hardware)
+    # quit the loop, Lock time (20s) decreases (by hardware)
     # and when finished, the power board cuts power.
 
 if __name__ == '__main__':

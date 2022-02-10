@@ -1,0 +1,27 @@
+* en cas de plantage d'installation de package (defectueux, garder en l'etat...)
+sudo dpkg --force-all --purge "the package"
+
+Problem vscode : cursor moves left one place !!
+    Change keyboard to : "keyboard.dispatch": "keyCode"
+    
+If sudo gedit fails :
+    type on terminal : xhost +local:
+
+when installing remote desktop with xrdp : if blackscreen persists, install : 
+sudo apt-get install xorgxrdp
+
+
+script pour installer et configurer automatiquement xRDP sur Ubuntu 18.04 qui installe:
+
+xrdp
+maté-session
+gnome-session
+xfce4-session
+Vous pouvez ensuite facilement changer le bureau dans ~/.xsession
+
+mate-session # Works
+#gnome-session --session=gnome-flashback-metacity --disable-acceleration-check & gnome-panel # Works
+#xfce4-session # Works
+GIST: https://gist.github.com/djravine/88f2b9957a0bef6a6dd4c55aca951a09
+
+USAGE: curl -sL https://gist.github.com/djravine/88f2b9957a0bef6a6dd4c55aca951a09/raw | bash -s --
