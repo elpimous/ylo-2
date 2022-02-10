@@ -1,0 +1,3 @@
+[submodule "ROS/WOLF_for_Ylo2/wolf_ylo2_interface"]
+	path = ROS/WOLF_for_Ylo2/wolf_ylo2_interface
+	url = ../../graiola/wolf_aliengo_interface.git
