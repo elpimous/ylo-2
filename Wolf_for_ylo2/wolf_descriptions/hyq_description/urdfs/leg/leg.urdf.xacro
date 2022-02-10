@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- ================================== Leg ================================== -->
+	<!-- The xacro macro xacro:hyq_leg contains: hip assembly, upper and lower leg -->
+        <xacro:macro name="hyq_leg" params="prefix parent *origin reflect_hip reflect_upper reflect_front knee_bent_backward load_force_sensors">
+		<!-- Joints -->
+		<!-- Hip assembly joint -->
+                <joint name="${prefix}_haa_joint" type="revolute">
+			<xacro:insert_block name="origin"/>
+			<parent link="${parent}"/>
+                        <child  link="${prefix}_hipassembly"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="${haa_limit}" velocity="12.0" lower="${haa_min*PI/180}" upper="${haa_max*PI/180}" />
+                        <dynamics damping="0.0" friction="0" />
+			<safety_controller k_position="50" k_velocity="10"
+							   soft_lower_limit="${haa_min*PI/180}" soft_upper_limit="${haa_max*PI/180}" />
+		</joint>
+		<!-- Upper leg joint -->
+                <joint name="${prefix}_hfe_joint" type="revolute">
+			<origin xyz="${hipassembly_length} 0 0" rpy="${reflect_upper*PI/2} 0 0"/>
+                        <parent link="${prefix}_hipassembly"/>
+                        <child  link="${prefix}_upperleg"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="${hfe_limit}" velocity="12.0"
+                  lower="${(1-knee_bent_backward)*(hfe_min)*PI/180 + (knee_bent_backward)*(-hfe_max)*PI/180}"
+                  upper="${(1-knee_bent_backward)*(hfe_max)*PI/180 + (knee_bent_backward)*(-hfe_min)*PI/180}"/>
+                        <dynamics damping="0.0" friction="0" />
+			<safety_controller k_position="50" k_velocity="10"
+                  soft_lower_limit="${(1-knee_bent_backward)*(hfe_min)*PI/180 + (knee_bent_backward)*(-hfe_max)*PI/180}"
+                  soft_upper_limit="${(1-knee_bent_backward)*(hfe_max)*PI/180 + (knee_bent_backward)*(-hfe_min)*PI/180}"/>
+		</joint>
+		<!-- Lower leg joint -->
+                <joint name="${prefix}_kfe_joint" type="revolute">
+			<origin xyz="${upperleg_length} 0 0" rpy="0 0 0"/>
+                        <parent link="${prefix}_upperleg"/>
+                        <child  link="${prefix}_lowerleg"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="${kfe_limit}" velocity="12.0"
+                  lower="${(1-knee_bent_backward)*(kfe_min)*PI/180 + (knee_bent_backward)*(-kfe_max)*PI/180}"
+                  upper="${(1-knee_bent_backward)*(kfe_max)*PI/180 + (knee_bent_backward)*(-kfe_min)*PI/180}"/>
+                        <dynamics damping="0.0" friction="0" />
+			<safety_controller k_position="50" k_velocity="10"
+                  soft_lower_limit="${(1-knee_bent_backward)*(kfe_min)*PI/180 + (knee_bent_backward)*(-kfe_max)*PI/180}"
+                  soft_upper_limit="${(1-knee_bent_backward)*(kfe_max)*PI/180 + (knee_bent_backward)*(-kfe_min)*PI/180}"/>
+		<!-- Foot joint -->
+		</joint>
+                <joint name="${prefix}_foot_joint" type="fixed">
+			<origin xyz="${lowerleg_length} 0 0" rpy="${PI/2} 0 ${-PI/2}"/>
+                        <parent link="${prefix}_lowerleg"/>
+                        <child  link="${prefix}_foot"/>
+		</joint>
+
+
+		<!-- Links -->
+		<!-- Hip assembly link -->
+                <link name="${prefix}_hipassembly">
+			<inertial>
+				<origin xyz="${xcom_hipassembly}
+							 ${reflect_hip*ycom_hipassembly}
+							 ${reflect_hip*zcom_hipassembly}"/>
+				<mass value="${m_hipassembly}"/>
+				<inertia ixx="${ixx_hipassembly}" iyy="${iyy_hipassembly}" izz="${izz_hipassembly}"
+						 ixy="${reflect_hip*ixy_hipassembly}" ixz="${reflect_hip*ixz_hipassembly}" iyz="${iyz_hipassembly}"/>
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="${(1-reflect_hip)*PI/2} 0 0"/>
+				<geometry>
+					<mesh filename="package://hyq_description/meshes/leg/hipassembly.dae" scale="1 1 1"/>
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="${(1-reflect_hip)*PI/2} 0 0"/>
+				<geometry>
+					<mesh filename="package://hyq_description/meshes/leg/hipassembly.dae" scale="1 1 1"/>
+				</geometry>
+			</collision>
+		</link>
+		<!-- Upper leg link -->
+                <link name="${prefix}_upperleg">
+			<inertial>
+				<origin xyz="${xcom_upperleg} ${-reflect_front*ycom_upperleg} ${zcom_upperleg}"/>
+				<mass value="${m_upperleg}"/>
+				<inertia ixx="${ixx_upperleg}" iyy="${iyy_upperleg}" izz="${izz_upperleg}"
+						 ixy="${reflect_front*ixy_upperleg}" ixz="${reflect_front*ixz_upperleg}" iyz="${iyz_upperleg}"/>
+			</inertial>
+			<visual> 
+				<origin xyz="0 0 0" rpy="${(1-reflect_front)*PI/2} 0 0"/>
+				<geometry>
+					<mesh filename="package://hyq_description/meshes/leg/upperleg.dae" scale="1 1 1"/>
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="${(1-reflect_front)*PI/2} 0 0"/>
+				<geometry>
+					<mesh filename="package://hyq_description/meshes/leg/upperleg.dae" scale="1 1 1"/>
+				</geometry>
+			</collision>
+		</link>
+		<!-- Lower leg link -->
+                <link name="${prefix}_lowerleg">
+			<inertial>
+				<origin xyz="${xcom_lowerleg} ${reflect_front*ycom_lowerleg} ${reflect_front*zcom_lowerleg}"/>
+				<mass value="${m_lowerleg}"/>
+				<inertia ixx="${ixx_lowerleg}" iyy="${iyy_lowerleg}" izz="${izz_lowerleg}"
+						 ixy="${reflect_front*ixy_lowerleg}" ixz="${reflect_front*ixz_lowerleg}" iyz="${iyz_lowerleg}"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="package://hyq_description/meshes/leg/lowerleg.dae" scale="1 1 1"/>
+				</geometry>
+				<material name="white"/>
+			</visual>
+			<collision>
+			    <origin xyz="${lowerleg_length/2.0} 0 0" rpy="0 ${-PI/2}  0"/>
+				<geometry>				    
+					<cylinder length="${lowerleg_length}"  radius="0.02"/>
+				</geometry>
+			</collision>
+		</link>
+		<!-- Foot link -->
+                <link name="${prefix}_foot">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<sphere radius="0.02175"/>
+				</geometry>
+			</collision>
+			<visual>
+				<geometry>
+					<sphere radius="0.02175" />
+				</geometry>
+				<material name="black" />
+			</visual>
+		</link>
+		
+		<!-- Extensions -->
+                <xacro:leg_transmission prefix="${prefix}"/>
+                <xacro:leg_gazebo prefix="${prefix}" robot_name="hyq" load_force_sensors="${load_force_sensors}"/>
+	</xacro:macro>
+
+</robot>
