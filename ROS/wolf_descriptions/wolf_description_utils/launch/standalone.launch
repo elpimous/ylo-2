@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <arg name="gui"         default="true"/>
+  <arg name="robot_name"  default="spot"/>
+  <arg name="arm_enabled" default="false"/>
+  <arg name="arm_name"    default="kinova"/>
+
+  <param name="use_gui"   value="$(arg gui)"/>
+
+  <!-- Send the robot urdf to parameter server -->
+  <include file="$(find wolf_description_utils)/launch/upload.launch">
+          <arg name="robot_name" value="$(arg robot_name)" />
+          <arg name="arm_name" value="$(arg arm_name)" />
+          <arg name="arm_enabled" value="$(arg arm_enabled)" />
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen" />
+
+  <group if="$(arg gui)">
+    <node
+     type="rviz"
+     name="rviz"
+     pkg="rviz"/>
+  </group>
+
+</launch>

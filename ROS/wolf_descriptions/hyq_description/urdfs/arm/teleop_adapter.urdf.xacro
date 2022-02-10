@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+ <joint name="joint_base_robots" type="fixed">
+        <parent link="trunk"/>
+        <child link="teleop_link0"/>
+        <origin xyz="0.59 0 0" rpy="0 0 0"/>
+ </joint>
+
+
+<xacro:include filename="$(find teleop_description)/urdf/teleop.urdf.xacro" />
+<xacro:include filename="$(find wolf_description_utils)/urdfs/arm.transmission.xacro"/>
+
+<xacro:arm_transmission name="joint1"/>
+<xacro:arm_transmission name="joint2"/>
+<xacro:arm_transmission name="joint3"/>
+<xacro:arm_transmission name="joint4"/>
+<xacro:arm_transmission name="joint5"/>
+
+</robot>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+        <xacro:macro name="leg_transmission" params="prefix">
+    	<!-- Hip assembly -->
+                <transmission name="${prefix}_haa_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+                        <joint name="${prefix}_haa_joint">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+			</joint>
+                        <actuator name="${prefix}_haa_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+    	<!-- Upper leg -->
+                <transmission name="${prefix}_hfe_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+                        <joint name="${prefix}_hfe_joint">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+			</joint>
+                        <actuator name="${prefix}_hfe_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+    	<!-- Lower leg -->
+                <transmission name="${prefix}_kfe_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+                        <joint name="${prefix}_kfe_joint">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+			</joint>
+                        <actuator name="${prefix}_kfe_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+	</xacro:macro>
+
+</robot>

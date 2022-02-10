@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="solo">
+
+    <!-- These are absoulte distance value, the sign are decided below -->
+    <xacro:property name="base_2_HAA_x" value="${194.60 * 0.001}" />
+    <xacro:property name="base_2_HAA_y" value="${87.50 * 0.001}" />
+
+    <xacro:property name="HAA_2_HFE_y" value="${14.0 * 0.001}" />
+
+    <xacro:property name="base_2_HFE_x" value="${190.00 * 0.001}" />
+    <xacro:property name="base_2_HFE_y" value="${104.60 * 0.001}" />
+
+    <xacro:property name="HFE_2_KFE_y" value="${37.45 * 0.001}" />
+    <xacro:property name="HFE_2_KFE_z" value="${160.00 * 0.001}" />
+
+    <xacro:property name="KFE_2_FOOT_y" value="${8.0 * 0.001}" />
+    <xacro:property name="KFE_2_FOOT_z" value="${160.00 * 0.001}" />
+
+
+    <!-- This macro has for purpose to define a leg -->
+    <xacro:macro name="leg" params="prefix is_front is_right has_side_motion
+                                  color_name color opacity load_force_sensors">
+    
+        <!-- Solo12 -->
+        <xacro:if value="${has_side_motion}">
+            <!--HAA JOINT: Joint between the trunk and the hip assembly -->
+            <joint name="${prefix}_haa_joint" type="revolute">
+                <parent link="trunk"/>
+                <child link="${prefix}_hipassembly"/>
+                <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+                <!-- joints rotates around the x-axis -->
+                <axis xyz="1 0 0"/>
+                
+                <!-- placement of the joint -->
+                
+                <xacro:if value="${is_front}">
+                    <xacro:unless value="${is_right}">
+                        <!-- LF_HAA_JOINT -->
+                        <origin xyz="${base_2_HAA_x} ${base_2_HAA_y} 0" rpy="0 0 0" />
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <!-- RF_HAA_JOINT -->
+                        <origin xyz="${base_2_HAA_x} ${-base_2_HAA_y} 0" rpy="0 0 0" />
+                    </xacro:if>
+                </xacro:if>
+                <xacro:unless value="${is_front}">
+                    <xacro:unless value="${is_right}">
+                        <!-- LH_HAA_JOINT -->
+                        <origin xyz="${-base_2_HAA_x} ${base_2_HAA_y} 0" rpy="0 0 0" />
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <!-- RH_HAA_JOINT -->
+                        <origin xyz="${-base_2_HAA_x} ${-base_2_HAA_y} 0" rpy="0 0 0" />
+                    </xacro:if>
+                </xacro:unless>
+                
+                <!-- pybullet simulation parameters -->
+                <dynamics damping="0.0" friction="0.0"/>
+            </joint>
+
+
+            <!-- HIP ASSEMBLY -->	
+            <link name="${prefix}_hipassembly">
+                <!-- create a dummy hipassembly link to join the two joints -->
+            	<!-- HIP ASSEMBLY VISUAL-->	
+	            <visual>
+                    <xacro:if value="${is_front}">
+                        <xacro:unless value="${is_right}">
+                            <!-- LF HIP ASSEMBLY -->
+                            <origin xyz="0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_fl.stl"/>
+                        	</geometry>
+                        </xacro:unless>
+                        <xacro:if value="${is_right}">
+                            <!-- RF HIP ASSEMBLY -->
+                            <origin xyz="0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_fr.stl"/>
+                        	</geometry>
+                        </xacro:if>
+                    </xacro:if>
+                    <xacro:unless value="${is_front}">
+                        <xacro:unless value="${is_right}">
+                            <!-- LH HIP ASSEMBLY -->
+                            <origin xyz="-0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_hl.stl"/>
+                        	</geometry>
+                        </xacro:unless>
+                        <xacro:if value="${is_right}">
+                            <!-- RH HIP ASSEMBLY -->
+                            <origin xyz="-0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_hr.stl"/>
+                        	</geometry>
+                        </xacro:if>
+                    </xacro:unless>
+	                <material name="${color_name}">
+                    	<color rgba="${color} ${opacity}"/>
+                	</material>
+	            </visual>
+	            
+	            <!-- HIP ASSEMBLY COLLISION-->	
+	            <collision>
+                    <xacro:if value="${is_front}">
+                        <xacro:unless value="${is_right}">
+                            <!-- LF HIP ASSEMBLY -->
+                            <origin xyz="0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_fl.stl"/>
+                        	</geometry>
+                        </xacro:unless>
+                        <xacro:if value="${is_right}">
+                            <!-- RF HIP ASSEMBLY -->
+                            <origin xyz="0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_fr.stl"/>
+                        	</geometry>
+                        </xacro:if>
+                    </xacro:if>
+                    <xacro:unless value="${is_front}">
+                        <xacro:unless value="${is_right}">
+                            <!-- LH HIP ASSEMBLY -->
+                            <origin xyz="-0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_hl.stl"/>
+                        	</geometry>
+                        </xacro:unless>
+                        <xacro:if value="${is_right}">
+                            <!-- RH HIP ASSEMBLY -->
+                            <origin xyz="-0.01950 0 0" rpy="0 0 0" />
+                        	<geometry>
+                        	    <mesh filename="package://solo_description/meshes/stl/solo12/solo12_hip_fe_hr.stl"/>
+                        	</geometry>
+                        </xacro:if>
+                    </xacro:unless>
+	                <material name="${color_name}">
+                    	<color rgba="${color} ${opacity}"/>xacro
+                	</material>
+	            </collision>
+	    
+	            <!-- HIP ASSEMBLY INERTIAL -->
+	            <inertial>
+	                <mass value="0.14853845"/>
+	                
+	                <xacro:if value="${is_front}">
+                        <xacro:unless value="${is_right}">
+                            <!-- LF HIP ASSEMBLY -->
+                            <origin xyz="-0.07870700 0.01 0." rpy="0 0 0" />
+	                        <inertia ixx="0.00003024" ixy="0.00004671" ixz="0.0"
+		                                              iyy="0.00041193" iyz="0.0"
+		                                                               izz="0.00041107"/>
+                        </xacro:unless>
+                        <xacro:if value="${is_right}">
+                            <!-- RF HIP ASSEMBLY -->
+                            <origin xyz="-0.07870700 -0.01 0." rpy="0 0 0" />
+                            <inertia ixx="0.00003024" ixy="-0.00004671" ixz="0.0"
+		                                              iyy="0.00041193"  iyz="0.0"
+		                                                                izz="0.00041107"/>  
+                        </xacro:if>
+                    </xacro:if>
+                    <xacro:unless value="${is_front}">
+                        <xacro:unless value="${is_right}">
+                            <!-- LH HIP ASSEMBLY -->
+                            <origin xyz="0.07870700 0.01 0." rpy="0 0 0" />
+	                        <inertia ixx="0.00003024" ixy="0.00004671" ixz="0.0"
+	                                                  iyy="0.00041193" iyz="0.0"
+		                                                               izz="0.00041107"/>
+                        </xacro:unless>
+                        <xacro:if value="${is_right}">
+                            <!-- RH HIP ASSEMBLY -->
+                            <origin xyz="0.07870700 -0.01 0." rpy="0 0 0" />
+                            <inertia ixx="0.00003024" ixy="-0.00004671" ixz="0.0"
+		                                              iyy="0.00041193"  iyz="0.0"
+		                                                                izz="0.00041107"/>
+                        </xacro:if>
+                    </xacro:unless>           
+	            </inertial>
+	        </link>        
+            
+            
+            <!--HFE JOINT-->
+            <joint name="${prefix}_hfe_joint" type="revolute">
+                <parent link="${prefix}_hipassembly"/>
+                <child link="${prefix}_upperleg"/>
+                <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+                <!-- joints rotates around the y-axis -->
+                <axis xyz="0 1 0"/>
+                <!-- placement of the joint -->
+                <xacro:if value="${is_right}">
+                    <origin xyz="0 ${-HAA_2_HFE_y} 0" rpy="0 0 0" />
+                </xacro:if>
+                <xacro:unless value="${is_right}">
+                    <origin xyz="0 ${HAA_2_HFE_y} 0" rpy="0 0 0" />
+                </xacro:unless>
+                <!-- pybullet simulation parameters -->
+                <dynamics damping="0.0" friction="0.0"/>
+            </joint>
+        </xacro:if>
+        
+        <!-- SOLO 9 -->
+        <xacro:unless value="${has_side_motion}">
+            <!-- Joint between the base and the ${prefix} upper leg -->
+            <joint name="${prefix}_hfe_joint" type="revolute">
+                <parent link="trunk"/>
+                <child link="${prefix}_upperleg"/>
+                <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+                <!-- joints rotates around the y-axis -->
+                <axis xyz="0 1 0"/>
+                <!-- placement of the joint -->
+                <xacro:if value="${is_front}">
+                    <xacro:unless value="${is_right}">
+                        <origin xyz="${base_2_HFE_x} ${base_2_HFE_y} 0" rpy="0 0 0" />
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <origin xyz="${base_2_HFE_x} ${-base_2_HFE_y} 0" rpy="0 0 0" />
+                    </xacro:if>
+                </xacro:if>
+                <xacro:unless value="${is_front}">
+                    <xacro:unless value="${is_right}">
+                        <origin xyz="${-base_2_HFE_x} ${base_2_HFE_y} 0" rpy="0 0 0" />
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <origin xyz="${-base_2_HFE_x} ${-base_2_HFE_y} 0" rpy="0 0 0" />
+                    </xacro:if>
+                </xacro:unless>
+                <!-- pybullet simulation parameters -->
+                <dynamics damping="0.0" friction="0.0"/>
+            </joint>
+        </xacro:unless>
+
+
+        <!-- UPPER LEG LINK -->
+        <link name="${prefix}_upperleg">
+            <!-- UPPER LEG LINK INERTIAL -->
+            <xacro:unless value="${is_right}">
+                <!-- Left upper leg inertia -->
+                <inertial>
+                    <origin xyz="0.00001377 0.01935853 -0.07870700" rpy="0 0 0" />
+                    <mass value="0.14853845"/>
+                    <inertia ixx="0.00041107" ixy="0.0"         ixz="0.0"
+                                              iyy="0.00041193"  iyz="0.00004671"
+                                                                izz="0.00003024"/>
+                </inertial>
+            </xacro:unless>
+            <xacro:if value="${is_right}">
+            <!-- Right upper leg inertia -->
+                <inertial>
+                    <origin xyz="-0.00001377 -0.01935853 -0.07870700" rpy="0 0 0" />
+                    <mass value="0.14853845"/>
+                    <inertia ixx="0.00041107" ixy="0.0"         ixz="0.0"
+                                              iyy="0.00041193"  iyz="-0.00004671"
+                                                                izz="0.00003024"/>
+                </inertial>
+            </xacro:if>
+            
+            <!-- UPPER LEG LINK VISUAL -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <xacro:unless value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_left_side.stl"/>
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_right_side.stl"/>
+                    </xacro:if>
+                </geometry>
+                <material name="${color_name}">
+                    <color rgba="${color} ${opacity}"/>
+                </material>
+            </visual>
+            
+            <!-- UPPER LEG LINK COLLISION -->
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <xacro:unless value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_left_side.stl"/>
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_right_side.stl"/>
+                    </xacro:if>
+                </geometry>
+                <material name="${color_name}">
+                    <color rgba="${color} ${opacity}"/>
+                </material>
+            </collision>
+            <!-- Bullet specific paramters -->
+            <contact>
+                <lateral_friction value="1.0"/>
+                <restitution value="0.5"/>
+            </contact>
+        </link> <!-- END UPPER LEG LINK -->
+
+
+
+
+        <!-- KFE JOINT: Joint between the upper leg and the lower leg -->
+        <joint name="${prefix}_kfe_joint" type="revolute">
+            <parent link="${prefix}_upperleg"/>
+            <child link="${prefix}_lowerleg"/>
+            <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+            <!-- joints rotates around the y-axis -->
+            <axis xyz="0 1 0"/>
+            <!-- placement of the joint -->
+            <xacro:if value="${is_front}">
+                <xacro:unless value="${is_right}">
+                    <origin xyz="0 ${HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
+                </xacro:unless>
+                <xacro:if value="${is_right}">
+                    <origin xyz="0 ${-HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
+                </xacro:if>
+            </xacro:if>
+            <xacro:unless value="${is_front}">
+                <xacro:unless value="${is_right}">
+                    <origin xyz="0 ${HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
+                </xacro:unless>
+                <xacro:if value="${is_right}">
+                    <origin xyz="0 ${-HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
+                </xacro:if>
+            </xacro:unless>
+            <!-- pybullet simulation parameters -->
+            <dynamics damping="0.0" friction="0.0"/>
+        </joint>
+
+
+
+        <!-- LOWERLEG -->
+        <link name="${prefix}_lowerleg">
+            <!-- LOWER LEG LINK INERTIAL -->
+            <xacro:unless value="${is_right}">
+                <!-- Left lower leg inertia -->
+                <inertial>
+                <origin xyz="0.0 0.00787644 -0.08928215" rpy="0 0 0" />
+                <mass value="0.03070001"/>
+                <inertia ixx="0.00012024" ixy="0.0"         ixz="0.0"
+                                          iyy="0.00012029"  iyz="0.00000305"
+                                                            izz="0.00000216"/>
+                </inertial>
+            </xacro:unless>
+            <xacro:if value="${is_right}">
+                <!-- Right lower leg inertia -->
+                <inertial>
+                <origin xyz="0.0 0.00787644 -0.08928215" rpy="0 0 0" />
+                <mass value="0.03070001"/>
+                <inertia ixx="0.00012024" ixy="0.0"         ixz="0.0"
+                                          iyy="0.00012029"  iyz="-0.00000305"
+                                                            izz="0.00000216"/>
+                </inertial>
+            </xacro:if>
+           
+            <!-- LOWER LEG LINK VISUAL -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <xacro:unless value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl"/>
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_right_side.stl"/>
+                    </xacro:if>
+                </geometry>
+                <material name="${color_name}">
+                    <color rgba="${color} ${opacity}"/>
+                </material>
+            </visual>
+            
+            <!-- LOWER LEG LINK COLLISION -->
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <xacro:unless value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl"/>
+                    </xacro:unless>
+                    <xacro:if value="${is_right}">
+                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_right_side.stl"/>
+                    </xacro:if>
+                </geometry>
+                <material name="${color_name}">
+                    <color rgba="${color} ${opacity}"/>
+                </material>
+            </collision>
+            <!-- Bullet specific paramters -->
+            <contact>
+                <lateral_friction value="1.0"/>
+                <restitution value="0.5"/>
+            </contact>
+        </link> <!-- END LOWER LEG LINK -->
+
+
+        <!-- ANKLE: (Fixed) joint between the lower leg and the foot -->
+        <joint name="${prefix}_ankle" type="fixed">
+            <parent link="${prefix}_lowerleg"/>
+            <child link="${prefix}_foot"/>
+            <!-- Joint placement --> 
+            <xacro:unless value="${is_right}">
+                <origin xyz="0 ${KFE_2_FOOT_y} ${-KFE_2_FOOT_z}" rpy="0 0 0" />
+            </xacro:unless>
+            
+            <xacro:if value="${is_right}">
+                <origin xyz="0 ${-KFE_2_FOOT_y} ${-KFE_2_FOOT_z}" rpy="0 0 0" />
+            </xacro:if>
+
+            <!-- pybullet simulation parameters -->
+            <dynamics damping="0.0" friction="0.0"/>
+        </joint>
+
+
+        <!-- FOOT -->
+        <link name="${prefix}_foot">
+            <!-- FOOT INERTIAL -->
+            <!-- This link is symmetrical left or right -->
+            <inertial>
+                <origin xyz="0 0 0.00035767" rpy="0 0 0" />
+                <mass value="0.00693606"/>
+                <inertia ixx="0.00000057" ixy="0.0"         ixz="0.0"
+                                          iyy="0.00000084"  iyz="0.0"
+                                                            izz="0.00000053"/>
+            </inertial>
+            
+            <!-- FOOT VISUAL -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot.stl"/>
+                </geometry>
+                <material name="${color_name}">
+                    <color rgba="${color} ${opacity}"/>
+                </material>
+            </visual>
+            
+            <!-- FOOT COLLISION -->
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot_simple.stl"/>
+                </geometry>
+                <material name="${color_name}">
+                    <color rgba="${color} ${opacity}"/>
+                </material>
+            </collision>
+            
+            <!-- Bullet specific paramters -->
+            <contact>
+                <lateral_friction value="1.0"/>
+                <restitution value="0.5"/>
+            </contact>
+        </link> <!-- END FOOT LINK -->
+
+        <!-- Extensions -->
+        <xacro:leg_transmission prefix="${prefix}"/>
+        <xacro:leg_gazebo prefix="${prefix}" load_force_sensors="${load_force_sensors}" robot_name="solo"/>
+    </xacro:macro>
+</robot>
