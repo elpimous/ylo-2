@@ -46,20 +46,38 @@
       <group name="lh_leg"/>
       <group name="rh_leg"/>
     </group>
+    <!--
     <group_state group="chains" name="standup">
-        <joint name="lf_haa_joint" value="0.1"/>
+        <joint name="lf_haa_joint" value="-0.051"/>
         <joint name="lf_hfe_joint" value="0.67"/>
         <joint name="lf_kfe_joint" value="-1.3"/>
-        <joint name="rf_haa_joint" value="-0.1"/>
+        <joint name="rf_haa_joint" value="0.051"/>
         <joint name="rf_hfe_joint" value="0.67"/>
         <joint name="rf_kfe_joint" value="-1.3"/>
-        <joint name="lh_haa_joint" value="0.1"/>
+        <joint name="lh_haa_joint" value="-0.051"/>
         <joint name="lh_hfe_joint" value="0.67"/>
         <joint name="lh_kfe_joint" value="-1.3"/>
-        <joint name="rh_haa_joint" value="-0.1"/>
+        <joint name="rh_haa_joint" value="0.051"/>
         <joint name="rh_hfe_joint" value="0.67"/>
         <joint name="rh_kfe_joint" value="-1.3"/>
     </group_state>
+    -->
+    
+    <group_state group="chains" name="standup">
+        <joint name="lf_haa_joint" value="-0.051"/>
+        <joint name="lf_hfe_joint" value="1.0"/>
+        <joint name="lf_kfe_joint" value="-1.7"/>
+        <joint name="rf_haa_joint" value="0.051"/>
+        <joint name="rf_hfe_joint" value="1.0"/>
+        <joint name="rf_kfe_joint" value="-1.7"/>
+        <joint name="lh_haa_joint" value="-0.051"/>
+        <joint name="lh_hfe_joint" value="1.0"/>
+        <joint name="lh_kfe_joint" value="-1.7"/>
+        <joint name="rh_haa_joint" value="0.051"/>
+        <joint name="rh_hfe_joint" value="1.0"/>
+        <joint name="rh_kfe_joint" value="-1.7"/>
+    </group_state>
+    
     <group_state group="chains" name="standdown">
         <joint name="lf_haa_joint" value="0.60"/>
         <joint name="lf_hfe_joint" value="1.70"/>

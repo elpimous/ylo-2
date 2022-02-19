@@ -2,22 +2,34 @@
 
 <robot name="ylo2_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+
     <!-- Constants for robot dimensions -->
+    
     <xacro:property name="PI" value="3.1415926535897931"/>
     <xacro:property name="stick_mass" value="0.00001"/>
 
+
+
     <!-- simplified collision value for ylo2 -->
+    
     <!-- corps -->
+    
     <xacro:property name="trunk_width" value="0.350"/> 
     <xacro:property name="trunk_length" value="0.569125"/>
     <xacro:property name="trunk_height" value="0.148521"/>
 
+
+
     <!-- adjust center of robot -->
+    
     <xacro:property name="trunk_offset_x" value="0.0"/>
     <xacro:property name="trunk_offset_y" value="0.0"/>
     <xacro:property name="abab_motors_offset_z" value="0.0"/>
 
-    <!-- aliengo params. do i need to modify them ...-->
+
+
+    <!-- leg params. -->
+    
     <xacro:property name="hip_radius" value="0.050"/>
     <xacro:property name="hip_length" value="0.418"/>
     <xacro:property name="upperleg_shoulder_radius" value="0.044"/>
@@ -31,84 +43,56 @@
     <xacro:property name="stick_length" value="0.2"/>
 
 
-    <!-- kinematic value 
 
-    <xacro:property name="upperleg_offset" value="0.083"/>
-    <xacro:property name="upperleg_length" value="0.25"/>
-    <xacro:property name="lowerleg_length" value="0.25"/>
-    -->
+    <!-- kinematic value -->
+    
     <xacro:property name="upperleg_offset" value="0.092"/> <!-- decalage lateral HIP -> upper_leg - lateral difference between HIP and upper_leg -->
     <xacro:property name="upperleg_length" value="0.215427"/> <!-- upper leg size, from HIP axis, to lower leg axis-->
     <xacro:property name="lowerleg_length" value="0.229819"/> <!-- lower leg size, from lower leg axis to end foot -->
 
-    <!-- leg offset from trunk center value 
 
-    <xacro:property name="leg_offset_x" value="0.2399"/>
-    <xacro:property name="leg_offset_y" value="0.051"/>
-    <xacro:property name="trunk_offset_z" value="0.01675"/>
-    <xacro:property name="hip_offset" value="0.083"/>
-    -->
+
+    <!-- leg offset from trunk center value -->
+    
     <xacro:property name="leg_offset_x" value="${0.387/2}"/> <!-- ecart centres HIP avant/arriere - HIP distance front/back -->
     <xacro:property name="leg_offset_y" value="${0.1144/2}"/> <!-- ecart centres HIP gauche/droite - HIP distance left/right-->
     <xacro:property name="leg_offset_z" value="-0.023"/> <!-- decalage hauteur axes pattes/abad - vertical difference HIP -> ABAD -->
     <xacro:property name="trunk_offset_z" value="0.01675"/>
     <xacro:property name="hip_offset" value="0.083"/>
 
+
+
     <!-- joint limits -->
+    
     <xacro:property name="damping" value="0"/>
     <xacro:property name="friction" value="0"/>
     <xacro:property name="hip_position_max" value="${70*PI/180.0}"/>
     <xacro:property name="hip_position_min" value="${-70*PI/180.0}"/>
     <xacro:property name="hip_velocity_max" value="20"/>
-    <xacro:property name="hip_torque_max" value="15"/>
+    <xacro:property name="hip_torque_max" value="14"/>
+    
     <xacro:property name="upperleg_velocity_max" value="20"/>
-    <xacro:property name="upperleg_torque_max" value="15"/>
+    <xacro:property name="upperleg_torque_max" value="14"/>
+    
     <xacro:property name="lowerleg_position_max" value="${-37*PI/180.0}"/>
     <xacro:property name="lowerleg_position_min" value="${-159*PI/180.0}"/>
     <xacro:property name="lowerleg_velocity_max" value="15"/>
-    <xacro:property name="lowerleg_torque_max" value="15"/>
-    
+    <xacro:property name="lowerleg_torque_max" value="14"/>
+
+
 
     <!-- dynamics inertial value 
             | ixx ixy ixz |
             | ixy iyy iyz |
-            | ixz iyz izz |
-    
-
-FROM MESHLAB ABOUT COLLISION OBJECTS
-
-Center of Mass is -0,012269 0,005390 0,028723
-Inertia Tensor is :
-| 0,000045 -0,000000 -0,000001 |
-| -0,000000 0,000120 0,000000 |
-| -0,000001 0,000000 0,000136 |
-Principal axes are :
-| 0,999959 -0,005114 -0,007529 |
-| 0,005136 0,999983 0,002831 |
-| 0,007515 -0,002870 0,999968 |
-axis momenta are :
-| 0,000045 0,000120 0,000136 |
-
-aliengo one : 
-
-    <xacro:property name="trunk_mass" value="11.041"/>
-    <xacro:property name="trunk_com_x" value="0.008465"/>
-    <xacro:property name="trunk_com_y" value="0.004045"/>
-    <xacro:property name="trunk_com_z" value="-0.000763"/>
-
-    <xacro:property name="trunk_ixx" value="0.050874"/>
-    <xacro:property name="trunk_ixy" value="-0.000451628"/>
-    <xacro:property name="trunk_ixz" value="0.000487603"/>
-    <xacro:property name="trunk_iyy" value="0.64036"/>
-    <xacro:property name="trunk_iyz" value="0.000048356"/>
-    <xacro:property name="trunk_izz" value="0.65655"/>
--->
+            | ixz iyz izz | -->
+            
     <!-- trunk -->
+    
     <xacro:property name="trunk_mass" value="3.128"/>
 
-    <xacro:property name="trunk_com_x" value="0.000252"/>
-    <xacro:property name="trunk_com_y" value="0.000194"/>
-    <xacro:property name="trunk_com_z" value="0.01192"/>
+    <xacro:property name="trunk_com_x" value="0.02"/> <!-- 0.000252 -->
+    <xacro:property name="trunk_com_y" value="0.00194"/> <!-- 0.000194 -->
+    <xacro:property name="trunk_com_z" value="0.0"/> <!-- 0.000194 -->
 
     <xacro:property name="trunk_ixx" value="0.01585"/>
     <xacro:property name="trunk_ixy" value="-0.0001332"/>
@@ -117,32 +101,10 @@ aliengo one :
     <xacro:property name="trunk_iyz" value="0.000015299"/>
     <xacro:property name="trunk_izz" value="0.04742"/>
 
-    <!-- hip (left front) 
+
+
+    <!-- hip (left front) -->
     
-    Center of Mass is 0,051934 0,000746 0,000049
-Inertia Tensor is :
-| 0,000000 0,000000 -0,000000 |
-| 0,000000 0,000000 0,000000 |
-| -0,000000 0,000000 0,000000 |
-Principal axes are :
-| 0,998701 0,050928 -0,001858 |
-| -0,050931 0,998701 -0,001302 |
-| 0,001789 0,001395 0,999997 |
-axis momenta are :
-| 0,000000 0,000000 0,000000 |
-
-    <xacro:property name="hip_mass" value="1.993"/>
-    <xacro:property name="hip_com_x" value="-0.022191"/>
-    <xacro:property name="hip_com_y" value="0.015144"/>
-    <xacro:property name="hip_com_z" value="-0.000015"/>
-    <xacro:property name="hip_ixx" value="0.002903894"/>
-    <xacro:property name="hip_ixy" value="-0.000071850"/>
-    <xacro:property name="hip_ixz" value="-0.000001262"/>
-    <xacro:property name="hip_iyy" value="0.004907517"/>
-    <xacro:property name="hip_iyz" value="-0.00000175"/>
-    <xacro:property name="hip_izz" value="0.005586944"/>
-
--->
     <xacro:property name="hip_mass" value="0.599"/>
 
     <xacro:property name="hip_com_x" value="-0.011957"/> <!-- com bon-->
@@ -156,32 +118,10 @@ axis momenta are :
     <xacro:property name="hip_iyz" value="0.000000215"/>
     <xacro:property name="hip_izz" value="0.0004707"/>
 
-    <!-- upperleg 
+
+
+    <!-- upperleg -->
     
-    Center of Mass is -0,000432 0,061605 -0,017901
-Inertia Tensor is :
-| 0,000002 -0,000000 -0,000000 |
-| -0,000000 0,000002 0,000000 |
-| -0,000000 0,000000 0,000001 |
-Principal axes are :
-| 0,999134 -0,039630 0,012644 |
-| 0,040746 0,993571 -0,105626 |
-| -0,008376 0,106050 0,994326 |
-axis momenta are :
-| 0,000002 0,000002 0,000001 |
-
-    <xacro:property name="upperleg_mass" value="0.639"/>
-    <xacro:property name="upperleg_com_x" value="-0.005607"/>
-    <xacro:property name="upperleg_com_y" value="-0.003877"/>
-    <xacro:property name="upperleg_com_z" value="-0.048199"/>
-    <xacro:property name="upperleg_ixx" value="0.005666803"/>
-    <xacro:property name="upperleg_ixy" value="0.000003597"/>
-    <xacro:property name="upperleg_ixz" value="0.000491446"/>
-    <xacro:property name="upperleg_iyy" value="0.005847229"/>
-    <xacro:property name="upperleg_iyz" value="0.000010086"/>
-    <xacro:property name="upperleg_izz" value="0.000369811"/>
-
--->
     <xacro:property name="upperleg_mass" value="1.080"/>
 
     <xacro:property name="upperleg_com_x" value="-0.000684"/> <!-- com bon-->
@@ -195,32 +135,9 @@ axis momenta are :
     <xacro:property name="upperleg_iyz" value="0.000010086"/>
     <xacro:property name="upperleg_izz" value="0.000369811"/>
 
-    <!-- lowerleg 
-    
-    Center of Mass is -0,000432 0,061605 -0,017901
-Inertia Tensor is :
-| 0,000002 -0,000000 -0,000000 |
-| -0,000000 0,000002 0,000000 |
-| -0,000000 0,000000 0,000001 |
-Principal axes are :
-| 0,999134 -0,039630 0,012644 |
-| 0,040746 0,993571 -0,105626 |
-| -0,008376 0,106050 0,994326 |
-axis momenta are :
-| 0,000002 0,000002 0,000001 |
 
-    <xacro:property name="lowerleg_mass" value="0.207"/>
-    <xacro:property name="lowerleg_com_x" value="0.002781"/>
-    <xacro:property name="lowerleg_com_y" value="0.000063"/>
-    <xacro:property name="lowerleg_com_z" value="-0.142518"/>
-    <xacro:property name="lowerleg_ixx" value="0.006341369"/>
-    <xacro:property name="lowerleg_ixy" value="-0.000000003"/>
-    <xacro:property name="lowerleg_ixz" value="-0.000087951"/>
-    <xacro:property name="lowerleg_iyy" value="0.006355157"/>
-    <xacro:property name="lowerleg_iyz" value="-0.000001336"/>
-    <xacro:property name="lowerleg_izz" value="0.000039188"/>
 
--->
+    <!-- lowerleg -->
 
     <xacro:property name="lowerleg_mass" value="0.175"/>
 
@@ -235,31 +152,10 @@ axis momenta are :
     <xacro:property name="lowerleg_iyz" value="0.000000277"/>
     <xacro:property name="lowerleg_izz" value="0.000029145"/>
 
-    <!-- foot 
-    
-    Center of Mass is -0,007669 -0,000036 -0,039511
-Inertia Tensor is :
-| 0,000000 0,000000 -0,000000 |
-| 0,000000 0,000000 0,000000 |
-| -0,000000 0,000000 0,000000 |
-Principal axes are :
-| 0,963587 -0,012948 0,267080 |
-| 0,018733 0,999642 -0,019123 |
-| -0,266737 0,023430 0,963485 |
-axis momenta are :
-| 0,000000 0,000000 0,000000 |
 
-    <xacro:property name="lowerleg_mass" value="0.207"/>
-    <xacro:property name="lowerleg_com_x" value="0.002781"/>
-    <xacro:property name="lowerleg_com_y" value="0.000063"/>
-    <xacro:property name="lowerleg_com_z" value="-0.142518"/>
-    <xacro:property name="lowerleg_ixx" value="0.006341369"/>
-    <xacro:property name="lowerleg_ixy" value="-0.000000003"/>
-    <xacro:property name="lowerleg_ixz" value="-0.000087951"/>
-    <xacro:property name="lowerleg_iyy" value="0.006355157"/>
-    <xacro:property name="lowerleg_iyz" value="-0.000001336"/>
-    <xacro:property name="lowerleg_izz" value="0.000039188"/>
--->
+
+    <!-- foot -->
+    
     <xacro:property name="foot_mass" value="0.078"/>
 
     <xacro:property name="foot_com_x" value="-0.007246"/>
