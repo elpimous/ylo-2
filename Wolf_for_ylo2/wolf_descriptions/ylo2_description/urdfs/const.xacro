@@ -12,7 +12,7 @@
 
     <!-- simplified collision value for ylo2 -->
     
-    <!-- corps -->
+    <!-- body -->
     
     <xacro:property name="trunk_width" value="0.350"/> 
     <xacro:property name="trunk_length" value="0.569125"/>
@@ -107,7 +107,7 @@
     
     <xacro:property name="hip_mass" value="0.599"/>
 
-    <xacro:property name="hip_com_x" value="-0.011957"/> <!-- com bon-->
+    <xacro:property name="hip_com_x" value="-0.011957"/>
     <xacro:property name="hip_com_y" value="0.000306"/>
     <xacro:property name="hip_com_z" value="0.000366"/>
 
@@ -124,7 +124,7 @@
     
     <xacro:property name="upperleg_mass" value="1.080"/>
 
-    <xacro:property name="upperleg_com_x" value="-0.000684"/> <!-- com bon-->
+    <xacro:property name="upperleg_com_x" value="-0.000684"/>
     <xacro:property name="upperleg_com_y" value="-0.010999"/>
     <xacro:property name="upperleg_com_z" value="-0.035487"/>
 
@@ -141,7 +141,7 @@
 
     <xacro:property name="lowerleg_mass" value="0.175"/>
 
-    <xacro:property name="lowerleg_com_x" value="0.000252"/> <!-- com bon-->
+    <xacro:property name="lowerleg_com_x" value="0.000252"/>
     <xacro:property name="lowerleg_com_y" value="0.000194"/>
     <xacro:property name="lowerleg_com_z" value="-0.05192"/>
 
