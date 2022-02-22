@@ -23,4 +23,8 @@ To remove power saving options :
 	
 	sudo systemctl status sleep.target suspend.target hibernate.target hybrid-sleep.target
 	
+	
+Intelligent Backup of Ubuntu : 
+
+	sudo timeshift --create --comments "ylo2-UP-rt-kernel-xrdp-moteus-peak-Wolf..."
 		
