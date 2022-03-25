@@ -5,7 +5,7 @@
      <!-- This argument allows us to load joint sensors that measure the internal wrenches -->
     <xacro:arg name="load_force_sensors" default="false"/>
     <xacro:arg name="task_period" default="0.004"/>
-    <xacro:arg name="sensors" default="false"/>
+    <xacro:arg name="imu" default="false"/>
     <xacro:arg name="floating_base_link" default="true"/>
     <xacro:arg name="robot_name"  default="ylo2"/>
     <xacro:arg name="base_name"   default="trunk"/>
@@ -20,9 +20,14 @@
     <xacro:include filename="$(find wolf_description_utils)/urdfs/leg.transmission.xacro"/>
     <xacro:include filename="$(find wolf_description_utils)/urdfs/leg.gazebo.xacro"/>
 
-    <!-- sensors -->
-    <xacro:if value="$(arg sensors)">
+    <!-- imu -->
+    <xacro:if value="$(arg imu)">
         <xacro:include filename="$(find sensors_description)/urdfs/sensors/imu.gazebo.xacro"/>
+    </xacro:if>
+
+    <!-- lidar -->
+    <xacro:if value="$(arg lidar)">
+        <xacro:include filename="$(wolf_descriptions)/ylo2_description/robots/rplidarA2_laser.urdf.xacro"/>
     </xacro:if>
 
     <xacro:include filename="$(find ylo2_description)/urdfs/const.xacro"/>
@@ -81,6 +86,7 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
 
+    <!--
     <link name="battery">
         <visual>
             <origin rpy="0 0 0" xyz="${trunk_offset_x} ${trunk_offset_y} ${abab_motors_offset_z}"/>
@@ -96,6 +102,7 @@
         <child link="battery"/>
         <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
+    -->
 
     <link name="covers">
         <visual>
@@ -161,6 +168,22 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
 
+    <link name="RplidarA2">
+        <visual>
+            <origin rpy="0 0 0" xyz="${RplidarA2_offset_x} ${trunk_offset_y+0.004} ${RplidarA2_offset_z}"/>
+            <geometry>
+                <mesh filename="package://ylo2_description/meshes/body/textured/Rp_lidar_A2.dae" scale="1 1 1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <joint name="RplidarA2_joint" type="fixed">
+        <parent link="trunk"/>
+        <child link="RplidarA2"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
 
     <!-- adding a lateral cylinder as collision object, to avoid robot to fall on it side-->
     <xacro:if value="${(rolloverProtection == 'true')}">
@@ -194,6 +217,7 @@
         </link>
     </xacro:if> 
 
+    <!-- imu joint -->
     <joint name="imu_joint" type="fixed">
         <parent link="trunk"/>
         <child link="trunk_imu"/>
@@ -249,6 +273,7 @@
     <xacro:leg_gazebo prefix="rh" robot_name="$(arg robot_name)" load_force_sensors="$(arg load_force_sensors)"/>
     <xacro:leg_transmission prefix="lh"/>
     <xacro:leg_gazebo prefix="lh" robot_name="$(arg robot_name)" load_force_sensors="$(arg load_force_sensors)"/>
+
 
     <xacro:if value="$(arg sensors)">
             <xacro:imu_sensor

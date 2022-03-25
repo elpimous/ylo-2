@@ -9,8 +9,6 @@
     <xacro:property name="stick_mass" value="0.00001"/>
 
 
-
-    <!-- simplified collision value for ylo2 -->
     
     <!-- body -->
     
@@ -20,6 +18,12 @@
 
 
 
+    <!-- RplidarA2  -->
+    <xacro:property name="RplidarA2_offset_x" value="0.20"/>
+    <xacro:property name="RplidarA2_offset_z" value="0.10"/>
+
+    
+    
     <!-- adjust center of robot -->
     
     <xacro:property name="trunk_offset_x" value="0.0"/>
