@@ -1,6 +1,6 @@
 # RPLIDAR A2 from SLAMTEC
 
-#### a 360 2D laser Lidar under 500$
+## a 360 2D laser Lidar under 500$
 
 install under ROS : 
 
