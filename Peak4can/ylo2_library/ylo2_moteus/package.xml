@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ylo2_moteus</name>
+  <version>0.1.0</version>
+  <description>
+    Moteus drivers package for ylo2, inspired about K3lso code.
+  </description>
+  <author email="elpimous12@gmail.com">Vincent foucault</author>
+  <maintainer email="elpimous12@gmail.com">Vincent foucault</maintainer>
+  <license>Apache 2.0</license>
+  <export>
+  </export>
+</package>
