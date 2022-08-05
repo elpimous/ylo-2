@@ -41,7 +41,7 @@ This robot is created from scratch.
 
 - [x] Finish robot
 
-- [x] RT kernel on 18.04
+- [x] RT kernel on 18.04 é 20.04
 
 - [x] Peak 4 can working
 
@@ -57,13 +57,9 @@ This robot is created from scratch.
 
 - [ ] Distance sensors SRF10
 
-- [ ] URDF
+- [x] URDF
 
-- [ ] Mini cheetah package
-
-- [x] Working Mini Cheetah 3 simulation
-
-- [ ] MiniCheetah Moteus controller
+- [x] Champ Moteus controller (position mode)
 
 - [ ] Improving gait
 
