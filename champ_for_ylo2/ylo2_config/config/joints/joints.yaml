@@ -1,0 +1,23 @@
+left_front:
+  - lf_haa_joint
+  - lf_hfe_joint
+  - lf_kfe_joint
+  - lf_foot_fixed
+
+right_front:
+  - rf_haa_joint
+  - rf_hfe_joint
+  - rf_kfe_joint
+  - rf_foot_fixed
+
+left_hind:
+  - lh_haa_joint
+  - lh_hfe_joint
+  - lh_kfe_joint
+  - lh_foot_fixed
+
+right_hind:
+  - rh_haa_joint
+  - rh_hfe_joint
+  - rh_kfe_joint
+  - rh_foot_fixed

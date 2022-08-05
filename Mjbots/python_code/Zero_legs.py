@@ -1,12 +1,5 @@
 #!/usr/bin/python3 -B
 
-# Zero_legs.py  is  a  Zero_legs_utility
-
-# run, and choose leg number
-
-# if error : "RuntimeError: Unexpected schema announce for 'servo_stats' : 'b'emit servo_stats''"
-# cause    : Tview was previously closed with tree opened ! 
-# solution : restart Tview, be sure trees are closed, and exit. Retry.
 
 import asyncio
 import math, time

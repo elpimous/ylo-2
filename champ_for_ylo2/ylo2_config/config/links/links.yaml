@@ -1,0 +1,24 @@
+base: base_link
+left_front:
+  - lf_hip
+  - lf_upperleg
+  - lf_lowerleg
+  - lf_foot
+
+right_front:
+  - rf_hip
+  - rf_upperleg
+  - rf_lowerleg
+  - rf_foot
+
+left_hind:
+  - lh_hip
+  - lh_upperleg
+  - lh_lowerleg
+  - lh_foot
+
+right_hind:
+  - rh_hip
+  - rh_upperleg
+  - rh_lowerleg
+  - rh_foot
