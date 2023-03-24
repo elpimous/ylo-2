@@ -104,9 +104,7 @@ CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
 
 	sudo make -j4
 
-	sudo make modules_install -j4
-
-	sudo make install -j4
+	sudo make INSTALL_MOD_STRIP=1 modules_install -j8 && sudo make install -j8
 
 Check new kernel file and update grub boot loader to start Linux with new RT-Kernel
 
