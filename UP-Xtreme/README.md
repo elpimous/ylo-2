@@ -1,3 +1,8 @@
+# Bec to output 12v @ 5A (7A peak)
+
+Hyper HV BEC (GSR-6005MD)
+
+
 # ADD KERNEL RT TO UP EXTREME I7 FOR UBUNTU 18.04 AND 20.04
 
 ----
