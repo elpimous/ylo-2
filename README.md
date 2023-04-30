@@ -13,6 +13,9 @@ This robot is created from scratch.
 ![Alt text](images/robot/body_structure1.jpg?raw=true)
 ![Alt text](images/robot/body_structure2.jpg?raw=true)
 
+#### Bec 12v @ 5A (7A peak)
+![Alt text](images/bec/GSR-6005MD-003-1024x683.jpg?raw=true)
+
 #### all covers are 3D printed, sanded, painted and coated with a 2K coat
 ![Alt text](images/robot/body_cover.jpg?raw=true)
 
